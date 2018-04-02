@@ -138,8 +138,11 @@ static void prepare_cmds(struct mgos_pppos_data *pd) {
   mg_asprintf(&pd->cmds[n++], 0, "ATZ");
   mg_asprintf(&pd->cmds[n++], 0, "ATE0");
   mg_asprintf(&pd->cmds[n++], 0, "ATI");
+  mg_asprintf(&pd->cmds[n++], 0, "AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
   if (pd->cfg.apn != NULL) {
-    mg_asprintf(&pd->cmds[n++], 0, "AT+CGDCONT=1,\"IP\",\"%s\"", pd->cfg.apn);
+    // mg_asprintf(&pd->cmds[n++], 0, "AT+CGDCONT=1,\"IP\",\"%s\"", pd->cfg.apn);
+      mg_asprintf(&pd->cmds[n++], 0, "AT+SAPBR=3,1,\"APN\",\"airtelgprs.com\"");
+      mg_asprintf(&pd->cmds[n++], 0, "AT+SAPBR=1,1");
   }
   mg_asprintf(&pd->cmds[n++], 0, "%s", pd->cfg.connect_cmd);
   pd->num_cmds = n;
