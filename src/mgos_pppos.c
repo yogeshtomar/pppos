@@ -339,6 +339,7 @@ bool mgos_pppos_create(const struct mgos_config_pppos *cfg, int if_instance) {
 }
 
 bool mgos_pppos_init(void) {
+  printf("======> MY PPPOS Library init() <======\n");
   if (!mgos_sys_config_get_pppos_enable()) return true;
   return mgos_pppos_create(&mgos_sys_config.pppos, 0 /* if_instance */);
 }
